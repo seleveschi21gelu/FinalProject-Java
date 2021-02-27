@@ -14,7 +14,6 @@ public class InvoiceService {
 
     public Invoice addInvoices(Invoice invoice) {
         return invoiceRepository.save(invoice);
-
     }
 
     public List<Invoice> findAllInvoices() {

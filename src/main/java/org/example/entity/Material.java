@@ -2,10 +2,7 @@ package org.example.entity;
 
 import org.example.entity.enums.DeliveryType;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Material {
@@ -13,6 +10,7 @@ public class Material {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
     String name;
+    @Enumerated(EnumType.STRING)
     DeliveryType type;
 
     public Material(Integer id, String name, DeliveryType type) {
