@@ -6,6 +6,5 @@ import javax.persistence.Entity;
 public enum Situation {
     ADVANCE, PAID, UNPAID;
 
-    Situation() {
-    }
+
 }
