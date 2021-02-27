@@ -13,22 +13,27 @@ public class Invoice {
     Integer id;
     String invoiceNumber;
     double unitPrice;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "provider_id", referencedColumnName = "id")
     Providers providers;
     Date invoiceDate;
     Status status;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "flatblock_id", referencedColumnName = "id")
     FlatBlock flatBlock;
 
-    public Invoice(String invoiceNumber, double unitPrice, Providers providers, Date invoiceDate, Status status, FlatBlock flatBlock) {
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "material_id", referencedColumnName = "id")
+    Material material;
+
+    public Invoice(String invoiceNumber, double unitPrice, Providers providers, Date invoiceDate, Status status, FlatBlock flatBlock, Material material) {
         this.invoiceNumber = invoiceNumber;
         this.unitPrice = unitPrice;
         this.providers = providers;
         this.invoiceDate = invoiceDate;
         this.status = status;
         this.flatBlock = flatBlock;
+        this.material = material;
     }
 
     public Invoice() {

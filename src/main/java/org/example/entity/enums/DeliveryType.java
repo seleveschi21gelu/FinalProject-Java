@@ -10,6 +10,8 @@ public enum DeliveryType {
     @JsonProperty("boxes")
     Boxes,
     @JsonProperty("pallet")
-    Pallet
+    Pallet,
+    @JsonProperty("serviceExecution")
+    ServiceExecution
 
 }
