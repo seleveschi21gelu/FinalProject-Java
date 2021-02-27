@@ -1,12 +1,10 @@
 package org.example.service;
 
 import org.example.entity.Invoice;
-import org.example.entity.Situation;
 import org.example.repository.InvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

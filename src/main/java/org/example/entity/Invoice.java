@@ -1,5 +1,7 @@
 package org.example.entity;
 
+import org.example.entity.enums.Situation;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
