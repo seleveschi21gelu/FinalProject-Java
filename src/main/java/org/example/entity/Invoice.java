@@ -1,11 +1,9 @@
 package org.example.entity;
 
-import org.example.entity.enums.Situation;
+import org.example.entity.enums.Status;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Invoice {
@@ -13,14 +11,24 @@ public class Invoice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
+    String invoiceNumber;
     double unitPrice;
-    Situation situation;
-    String materialName;
+    @ManyToOne
+    @JoinColumn(name = "provider_id", referencedColumnName = "id")
+    Providers providers;
+    Date invoiceDate;
+    Status status;
+    @ManyToOne
+    @JoinColumn(name = "flatblock_id", referencedColumnName = "id")
+    FlatBlock flatBlock;
 
-    public Invoice(double unitPrice, Situation situation, String materialName) {
+    public Invoice(String invoiceNumber, double unitPrice, Providers providers, Date invoiceDate, Status status, FlatBlock flatBlock) {
+        this.invoiceNumber = invoiceNumber;
         this.unitPrice = unitPrice;
-               this.situation = situation;
-        this.materialName = materialName;
+        this.providers = providers;
+        this.invoiceDate = invoiceDate;
+        this.status = status;
+        this.flatBlock = flatBlock;
     }
 
     public Invoice() {
@@ -34,6 +42,14 @@ public class Invoice {
         this.id = id;
     }
 
+    public String getInvoiceNumber() {
+        return invoiceNumber;
+    }
+
+    public void setInvoiceNumber(String invoiceNumber) {
+        this.invoiceNumber = invoiceNumber;
+    }
+
     public double getUnitPrice() {
         return unitPrice;
     }
@@ -42,19 +58,35 @@ public class Invoice {
         this.unitPrice = unitPrice;
     }
 
-    public Situation getSituation() {
-        return situation;
+    public Providers getProviders() {
+        return providers;
     }
 
-    public void setSituation(Situation situation) {
-        this.situation = situation;
+    public void setProviders(Providers providers) {
+        this.providers = providers;
     }
 
-    public String getMaterialName() {
-        return materialName;
+    public Date getInvoiceDate() {
+        return invoiceDate;
     }
 
-    public void setMaterialName(String materialName) {
-        this.materialName = materialName;
+    public void setInvoiceDate(Date invoiceDate) {
+        this.invoiceDate = invoiceDate;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public FlatBlock getFlatBlock() {
+        return flatBlock;
+    }
+
+    public void setFlatBlock(FlatBlock flatBlock) {
+        this.flatBlock = flatBlock;
     }
 }

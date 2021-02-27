@@ -1,7 +1,15 @@
 package org.example.entity.enums;
 
-public enum  DeliveryType {
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-    Bags,Unit,Boxes,Pallet
+public enum DeliveryType {
+    @JsonProperty("bags")
+    Bags,
+    @JsonProperty("unit")
+    Unit,
+    @JsonProperty("boxes")
+    Boxes,
+    @JsonProperty("pallet")
+    Pallet
 
 }
