@@ -1,0 +1,10 @@
+org\example\entity\Compartment.class
+org\example\entity\Pieces.class
+org\example\repository\InvoiceRepository.class
+org\example\entity\Provider.class
+org\example\entity\Situation.class
+org\example\controller\InvoiceRestController.class
+org\example\App.class
+org\example\service\InvoiceService.class
+org\example\entity\Subcompartment.class
+org\example\entity\Invoice.class
