@@ -24,9 +24,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable();
         http.authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/**").permitAll()  // permite acces tuturor
-                .antMatchers(HttpMethod.GET, "/**").permitAll()  // permite acces tuturor
+                .antMatchers("/**").permitAll()  // permite acces tuturor
                 .and()
                 .authorizeRequests()
                 .antMatchers("/admin").hasRole("ADMIN")  // au acces doar useri cu rol de admin
