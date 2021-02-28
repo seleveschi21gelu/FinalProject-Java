@@ -1,6 +1,8 @@
 package org.example.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.example.entity.enums.Status;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -17,6 +19,7 @@ public class Invoice {
     @JoinColumn(name = "provider_id", referencedColumnName = "id")
     Providers providers;
     Date invoiceDate;
+    @Enumerated(EnumType.STRING)
     Status status;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "flatblock_id", referencedColumnName = "id")
@@ -93,5 +96,13 @@ public class Invoice {
 
     public void setFlatBlock(FlatBlock flatBlock) {
         this.flatBlock = flatBlock;
+    }
+
+    public Material getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
     }
 }

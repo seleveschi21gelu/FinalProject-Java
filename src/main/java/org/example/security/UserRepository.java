@@ -1,7 +1,7 @@
 package org.example.security;
 
 
-import org.example.security.models.User;
+import org.example.security.modelsSecurity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

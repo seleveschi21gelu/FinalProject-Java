@@ -2,6 +2,7 @@ package org.example.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -24,9 +25,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/user").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/").permitAll()
+                .antMatchers(HttpMethod.POST, "/**").permitAll()  // permite acces tuturor
+                .antMatchers(HttpMethod.GET, "/**").permitAll()  // permite acces tuturor
+                .and()
+                .authorizeRequests()
+                .antMatchers("/admin").hasRole("ADMIN")  // au acces doar useri cu rol de admin
+                .and()
+                .authorizeRequests()
+                .antMatchers("/user").hasAnyRole("ADMIN", "USER")  // au acces useri care au rol de admin sau de user
+                .and().authorizeRequests().anyRequest().authenticated()  // orice alt request fata de precedentele trebuie sa fie autentificat
                 .and().formLogin();
     }
 

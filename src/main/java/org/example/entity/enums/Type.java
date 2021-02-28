@@ -4,9 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public enum  Type {
     @JsonProperty("red")
-    Red,
+    red,
     @JsonProperty("gray")
-    Gray,
+    gray,
     @JsonProperty("white")
-    White
+    white
 }
