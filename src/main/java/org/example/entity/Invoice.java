@@ -19,7 +19,8 @@ public class Invoice {
     @JoinColumn(name = "provider_id", referencedColumnName = "id")
     Providers providers;
     Date invoiceDate;
-    @Enumerated(EnumType.STRING)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "status_id", referencedColumnName = "id")
     Status status;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "flatblock_id", referencedColumnName = "id")

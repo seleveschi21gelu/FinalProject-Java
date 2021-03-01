@@ -10,7 +10,9 @@ public class Material {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
     String name;
-    @Enumerated(EnumType.STRING)
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "deliveryType_id", referencedColumnName = "id")
     DeliveryType type;
 
     public Material(Integer id, String name, DeliveryType type) {

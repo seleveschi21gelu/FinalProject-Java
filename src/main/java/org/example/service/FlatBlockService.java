@@ -1,10 +1,12 @@
 package org.example.service;
 
 import org.example.entity.FlatBlock;
+import org.example.entity.enums.Type;
 import org.example.repository.FlatBlockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,8 +24,11 @@ public class FlatBlockService {
     }
 
     public FlatBlock addFlatBlock(FlatBlock flatBlock) {
+
         return flatBlockRepository.save(flatBlock);
     }
+
+
 
     public FlatBlock updateFlatBlockById(FlatBlock flatBlock) {
         return flatBlockRepository.save(flatBlock);
@@ -32,6 +37,15 @@ public class FlatBlockService {
     public void deleteFlatBlockById(Integer id) {
         flatBlockRepository.deleteById(id);
     }
+
+//    static List<Type> typeList = new ArrayList<>();
+////    static List<FlatBlock> flatBlockList = new ArrayList<>(typeList);
+//
+//    static {
+//        typeList.add(new Type("Red"));
+//        typeList.add(new Type("Gray"));
+//        typeList.add(new Type("Finished"));
+//    }
 
 
 }

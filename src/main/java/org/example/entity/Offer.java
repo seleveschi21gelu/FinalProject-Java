@@ -10,6 +10,8 @@ public class Offer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "deliveryType_id", referencedColumnName = "id")
     DeliveryType deliveryType;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "providers_id", referencedColumnName = "id")
