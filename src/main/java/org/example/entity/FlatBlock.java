@@ -1,9 +1,6 @@
 package org.example.entity;
 
-import org.example.entity.enums.Type;
-
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class FlatBlock {

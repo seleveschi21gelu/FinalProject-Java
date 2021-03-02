@@ -1,9 +1,5 @@
 package org.example.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.example.entity.enums.Status;
-import org.springframework.beans.factory.annotation.Value;
-
 import javax.persistence.*;
 import java.util.Date;
 

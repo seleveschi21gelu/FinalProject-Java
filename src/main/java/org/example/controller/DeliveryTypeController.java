@@ -1,6 +1,6 @@
 package org.example.controller;
 
-import org.example.entity.enums.DeliveryType;
+import org.example.entity.DeliveryType;
 import org.example.service.DeliveryTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

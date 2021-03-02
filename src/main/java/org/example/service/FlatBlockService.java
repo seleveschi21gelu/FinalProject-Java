@@ -1,12 +1,10 @@
 package org.example.service;
 
 import org.example.entity.FlatBlock;
-import org.example.entity.enums.Type;
 import org.example.repository.FlatBlockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

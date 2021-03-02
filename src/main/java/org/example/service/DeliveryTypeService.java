@@ -1,6 +1,6 @@
 package org.example.service;
 
-import org.example.entity.enums.DeliveryType;
+import org.example.entity.DeliveryType;
 import org.example.repository.DeliveryTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

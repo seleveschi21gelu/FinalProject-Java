@@ -1,7 +1,5 @@
 package org.example.entity;
 
-import org.example.entity.enums.DeliveryType;
-
 import javax.persistence.*;
 
 @Entity

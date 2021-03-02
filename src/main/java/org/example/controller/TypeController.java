@@ -1,7 +1,6 @@
 package org.example.controller;
 
-import org.example.entity.enums.Status;
-import org.example.entity.enums.Type;
+import org.example.entity.Type;
 import org.example.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,6 +1,6 @@
 package org.example.service;
 
-import org.example.entity.enums.Type;
+import org.example.entity.Type;
 import org.example.repository.TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package org.example.repository;
 
-import org.example.entity.enums.Type;
+import org.example.entity.Type;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
