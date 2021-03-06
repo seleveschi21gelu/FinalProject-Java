@@ -1,6 +1,6 @@
 package org.example.controller;
 
-import org.example.entity.Providers;
+import org.example.entity.Provider;
 import org.example.service.ProvidersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,32 +18,32 @@ public class ProviderController {
     private ProvidersService providerService;
 
     @GetMapping
-    private ResponseEntity<List<Providers>> getAllProviders() {
-        List<Providers> list = providerService.getAllProviders();
+    private ResponseEntity<List<Provider>> getAllProviders() {
+        List<Provider> list = providerService.getAllProviders();
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    private ResponseEntity<Providers> getProviderById(@PathVariable Integer id) {
-        Providers provider = providerService.getProviderById(id);
+    private ResponseEntity<Provider> getProviderById(@PathVariable Integer id) {
+        Provider provider = providerService.getProviderById(id);
         return new ResponseEntity<>(provider, HttpStatus.OK);
     }
 
     @PostMapping
-    private ResponseEntity<Providers> addProvider(@RequestBody Providers provider) {
+    private ResponseEntity<Provider> addProvider(@RequestBody Provider provider) {
         providerService.addProviders(provider);
         return new ResponseEntity<>(provider, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    private ResponseEntity<Providers> updateProvidersById(@PathVariable Integer id, @RequestBody Providers providers) {
+    private ResponseEntity<Provider> updateProvidersById(@PathVariable Integer id, @RequestBody Provider providers) {
         providers.setId(id);
         providerService.updateProviderById(providers);
         return new ResponseEntity<>(providers, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    private ResponseEntity<Providers> deleteProvidersById(@PathVariable Integer id) {
+    private ResponseEntity<Provider> deleteProvidersById(@PathVariable Integer id) {
         providerService.deleteProviderById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

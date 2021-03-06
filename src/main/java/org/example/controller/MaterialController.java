@@ -1,7 +1,6 @@
 package org.example.controller;
 
 import org.example.entity.Material;
-import org.example.entity.Providers;
 import org.example.service.MaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

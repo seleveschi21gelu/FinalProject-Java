@@ -10,9 +10,9 @@ public class FlatBlock {
     private String name;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "type_id", referencedColumnName = "id")
-    private Type type;
+    private ConstructionType type;
 
-    public FlatBlock(Integer id, String name, Type type) {
+    public FlatBlock(Integer id, String name, ConstructionType type) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -37,11 +37,11 @@ public class FlatBlock {
         this.name = name;
     }
 
-    public Type getType() {
+    public ConstructionType getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(ConstructionType type) {
         this.type = type;
     }
 }

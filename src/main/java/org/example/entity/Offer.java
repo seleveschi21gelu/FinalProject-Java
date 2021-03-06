@@ -13,10 +13,10 @@ public class Offer {
     DeliveryType deliveryType;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "providers_id", referencedColumnName = "id")
-    Providers providers;
+    Provider providers;
     boolean accepted;
 
-    public Offer(DeliveryType deliveryType, Providers providers, boolean accepted) {
+    public Offer(DeliveryType deliveryType, Provider providers, boolean accepted) {
         this.deliveryType = deliveryType;
         this.providers = providers;
         this.accepted = accepted;
@@ -41,11 +41,11 @@ public class Offer {
         this.deliveryType = deliveryType;
     }
 
-    public Providers getProviders() {
+    public Provider getProviders() {
         return providers;
     }
 
-    public void setProviders(Providers providers) {
+    public void setProviders(Provider providers) {
         this.providers = providers;
     }
 

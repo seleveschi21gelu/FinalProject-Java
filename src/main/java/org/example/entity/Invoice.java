@@ -13,11 +13,11 @@ public class Invoice {
     double unitPrice;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "provider_id", referencedColumnName = "id")
-    Providers providers;
+    Provider providers;
     Date invoiceDate;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "status_id", referencedColumnName = "id")
-    Status status;
+    PaidStatus status;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "flatblock_id", referencedColumnName = "id")
     FlatBlock flatBlock;
@@ -26,7 +26,7 @@ public class Invoice {
     @JoinColumn(name = "material_id", referencedColumnName = "id")
     Material material;
 
-    public Invoice(String invoiceNumber, double unitPrice, Providers providers, Date invoiceDate, Status status, FlatBlock flatBlock, Material material) {
+    public Invoice(String invoiceNumber, double unitPrice, Provider providers, Date invoiceDate, PaidStatus status, FlatBlock flatBlock, Material material) {
         this.invoiceNumber = invoiceNumber;
         this.unitPrice = unitPrice;
         this.providers = providers;
@@ -63,11 +63,11 @@ public class Invoice {
         this.unitPrice = unitPrice;
     }
 
-    public Providers getProviders() {
+    public Provider getProviders() {
         return providers;
     }
 
-    public void setProviders(Providers providers) {
+    public void setProviders(Provider providers) {
         this.providers = providers;
     }
 
@@ -79,11 +79,11 @@ public class Invoice {
         this.invoiceDate = invoiceDate;
     }
 
-    public Status getStatus() {
+    public PaidStatus getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(PaidStatus status) {
         this.status = status;
     }
 
