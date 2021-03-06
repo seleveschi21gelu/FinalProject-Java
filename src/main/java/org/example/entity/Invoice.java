@@ -11,30 +11,20 @@ public class Invoice {
     Integer id;
     String invoiceNumber;
     double unitPrice;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "provider_id", referencedColumnName = "id")
-    Provider providers;
+    Provider provider;
     Date invoiceDate;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "paid_status_id", referencedColumnName = "id")
     PaidStatus paidStatus;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "flatblock_id", referencedColumnName = "id")
     FlatBlock flatBlock;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "material_id", referencedColumnName = "id")
     MaterialAndExecution materialAndExecution;
-
-    public Invoice(String invoiceNumber, double unitPrice, Provider providers, Date invoiceDate, PaidStatus paidStatus, FlatBlock flatBlock, MaterialAndExecution materialAndExecution) {
-        this.invoiceNumber = invoiceNumber;
-        this.unitPrice = unitPrice;
-        this.providers = providers;
-        this.invoiceDate = invoiceDate;
-        this.paidStatus = paidStatus;
-        this.flatBlock = flatBlock;
-        this.materialAndExecution = materialAndExecution;
-    }
 
     public Invoice() {
     }
@@ -63,12 +53,12 @@ public class Invoice {
         this.unitPrice = unitPrice;
     }
 
-    public Provider getProviders() {
-        return providers;
+    public Provider getProvider() {
+        return provider;
     }
 
-    public void setProviders(Provider providers) {
-        this.providers = providers;
+    public void setProvider(Provider providers) {
+        this.provider = providers;
     }
 
     public Date getInvoiceDate() {
@@ -100,6 +90,14 @@ public class Invoice {
     }
 
     public void setMaterial(MaterialAndExecution materialAndExecution) {
+        this.materialAndExecution = materialAndExecution;
+    }
+
+    public MaterialAndExecution getMaterialAndExecution() {
+        return materialAndExecution;
+    }
+
+    public void setMaterialAndExecution(MaterialAndExecution materialAndExecution) {
         this.materialAndExecution = materialAndExecution;
     }
 }

@@ -45,4 +45,12 @@ public class MaterialAndExecution {
     public void setType(DeliveryType type) {
         this.deliveryType = type;
     }
+
+    public DeliveryType getDeliveryType() {
+        return deliveryType;
+    }
+
+    public void setDeliveryType(DeliveryType deliveryType) {
+        this.deliveryType = deliveryType;
+    }
 }
