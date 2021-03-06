@@ -1,6 +1,6 @@
 package org.example.service;
 
-import org.example.entity.Material;
+import org.example.entity.MaterialAndExecution;
 import org.example.repository.MaterialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,22 +13,22 @@ public class MaterialService {
     @Autowired
     private MaterialRepository materialRepository;
 
-   public List<Material> getMaterialList (){
+   public List<MaterialAndExecution> getMaterialList (){
         return materialRepository.findAll();
     }
-    public List<Material> findAllMaterials() {
+    public List<MaterialAndExecution> findAllMaterials() {
         return materialRepository.findAll();
     }
 
-    public Material findMaterialById(Integer id) {
+    public MaterialAndExecution findMaterialById(Integer id) {
         return materialRepository.findById(id).orElseThrow(() -> new RuntimeException("Materials by id " + id + " was not found"));
     }
-    public Material addMaterial(Material material) {
-        return materialRepository.save(material);
+    public MaterialAndExecution addMaterial(MaterialAndExecution materialAndExecution) {
+        return materialRepository.save(materialAndExecution);
     }
 
-    public Material updateMaterialById(Material material) {
-        return materialRepository.save(material);
+    public MaterialAndExecution updateMaterialById(MaterialAndExecution materialAndExecution) {
+        return materialRepository.save(materialAndExecution);
     }
 
     public void deleteMaterialById(Integer id) {

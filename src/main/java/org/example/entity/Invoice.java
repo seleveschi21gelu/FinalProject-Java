@@ -16,24 +16,24 @@ public class Invoice {
     Provider providers;
     Date invoiceDate;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "status_id", referencedColumnName = "id")
-    PaidStatus status;
+    @JoinColumn(name = "paid_status_id", referencedColumnName = "id")
+    PaidStatus paidStatus;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "flatblock_id", referencedColumnName = "id")
     FlatBlock flatBlock;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "material_id", referencedColumnName = "id")
-    Material material;
+    MaterialAndExecution materialAndExecution;
 
-    public Invoice(String invoiceNumber, double unitPrice, Provider providers, Date invoiceDate, PaidStatus status, FlatBlock flatBlock, Material material) {
+    public Invoice(String invoiceNumber, double unitPrice, Provider providers, Date invoiceDate, PaidStatus paidStatus, FlatBlock flatBlock, MaterialAndExecution materialAndExecution) {
         this.invoiceNumber = invoiceNumber;
         this.unitPrice = unitPrice;
         this.providers = providers;
         this.invoiceDate = invoiceDate;
-        this.status = status;
+        this.paidStatus = paidStatus;
         this.flatBlock = flatBlock;
-        this.material = material;
+        this.materialAndExecution = materialAndExecution;
     }
 
     public Invoice() {
@@ -79,12 +79,12 @@ public class Invoice {
         this.invoiceDate = invoiceDate;
     }
 
-    public PaidStatus getStatus() {
-        return status;
+    public PaidStatus getPaidStatus() {
+        return paidStatus;
     }
 
-    public void setStatus(PaidStatus status) {
-        this.status = status;
+    public void setPaidStatus(PaidStatus status) {
+        this.paidStatus = status;
     }
 
     public FlatBlock getFlatBlock() {
@@ -95,11 +95,11 @@ public class Invoice {
         this.flatBlock = flatBlock;
     }
 
-    public Material getMaterial() {
-        return material;
+    public MaterialAndExecution getMaterial() {
+        return materialAndExecution;
     }
 
-    public void setMaterial(Material material) {
-        this.material = material;
+    public void setMaterial(MaterialAndExecution materialAndExecution) {
+        this.materialAndExecution = materialAndExecution;
     }
 }

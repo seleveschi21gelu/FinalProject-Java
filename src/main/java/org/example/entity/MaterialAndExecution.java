@@ -3,7 +3,7 @@ package org.example.entity;
 import javax.persistence.*;
 
 @Entity
-public class Material {
+public class MaterialAndExecution {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
@@ -11,15 +11,15 @@ public class Material {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "deliveryType_id", referencedColumnName = "id")
-    DeliveryType type;
+    DeliveryType deliveryType;
 
-    public Material(Integer id, String name, DeliveryType type) {
+    public MaterialAndExecution(Integer id, String name, DeliveryType deliveryType) {
         this.id = id;
         this.name = name;
-        this.type = type;
+        this.deliveryType = deliveryType;
     }
 
-    public Material() {
+    public MaterialAndExecution() {
     }
 
     public Integer getId() {
@@ -39,10 +39,10 @@ public class Material {
     }
 
     public DeliveryType getType() {
-        return type;
+        return deliveryType;
     }
 
     public void setType(DeliveryType type) {
-        this.type = type;
+        this.deliveryType = type;
     }
 }
