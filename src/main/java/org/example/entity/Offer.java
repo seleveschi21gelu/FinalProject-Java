@@ -8,10 +8,10 @@ public class Offer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "deliveryType_id", referencedColumnName = "id")
     DeliveryType deliveryType;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "providers_id", referencedColumnName = "id")
     Provider providers;
     boolean accepted;

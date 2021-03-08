@@ -8,7 +8,7 @@ public class FlatBlock {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "construction_type_id", referencedColumnName = "id")
     private ConstructionType constructionType;
 

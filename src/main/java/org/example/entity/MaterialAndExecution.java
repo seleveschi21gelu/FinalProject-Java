@@ -9,7 +9,7 @@ public class MaterialAndExecution {
     Integer id;
     String name;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "deliveryType_id", referencedColumnName = "id")
     DeliveryType deliveryType;
 
