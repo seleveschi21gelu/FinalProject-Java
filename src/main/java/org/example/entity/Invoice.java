@@ -10,21 +10,27 @@ public class Invoice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
     String invoiceNumber;
-    double unitPrice;
-    @ManyToOne()
+    @ManyToOne
+    @JoinColumn(name = "material_id", referencedColumnName = "id")
+    MaterialAndExecution materialAndExecution;
+
+
+    @ManyToOne
     @JoinColumn(name = "provider_id", referencedColumnName = "id")
     Provider provider;
     Date invoiceDate;
-    @ManyToOne()
+    double unitPrice;
+    String quantity;
+    String TVA;
+    double total;
+    @ManyToOne
     @JoinColumn(name = "paid_status_id", referencedColumnName = "id")
     PaidStatus paidStatus;
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "flatblock_id", referencedColumnName = "id")
     FlatBlock flatBlock;
 
-    @ManyToOne()
-    @JoinColumn(name = "material_id", referencedColumnName = "id")
-    MaterialAndExecution materialAndExecution;
+
 
     public Invoice() {
     }
@@ -75,6 +81,30 @@ public class Invoice {
 
     public void setPaidStatus(PaidStatus status) {
         this.paidStatus = status;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getTVA() {
+        return TVA;
+    }
+
+    public void setTVA(String TVA) {
+        this.TVA = TVA;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     public FlatBlock getFlatBlock() {
