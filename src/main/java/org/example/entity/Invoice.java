@@ -1,7 +1,7 @@
 package org.example.entity;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 public class Invoice {
@@ -14,22 +14,19 @@ public class Invoice {
     @JoinColumn(name = "material_id", referencedColumnName = "id")
     MaterialAndExecution materialAndExecution;
 
-
     @ManyToOne
     @JoinColumn(name = "provider_id", referencedColumnName = "id")
     Provider provider;
-    Date invoiceDate;
+    LocalDate invoiceDate;
     double unitPrice;
     String quantity;
-    String TVA;
-    double total;
+    double tva;
     @ManyToOne
     @JoinColumn(name = "paid_status_id", referencedColumnName = "id")
     PaidStatus paidStatus;
     @ManyToOne
     @JoinColumn(name = "flatblock_id", referencedColumnName = "id")
     FlatBlock flatBlock;
-
 
 
     public Invoice() {
@@ -67,11 +64,11 @@ public class Invoice {
         this.provider = providers;
     }
 
-    public Date getInvoiceDate() {
+    public LocalDate getInvoiceDate() {
         return invoiceDate;
     }
 
-    public void setInvoiceDate(Date invoiceDate) {
+    public void setInvoiceDate(LocalDate invoiceDate) {
         this.invoiceDate = invoiceDate;
     }
 
@@ -89,22 +86,6 @@ public class Invoice {
 
     public void setQuantity(String quantity) {
         this.quantity = quantity;
-    }
-
-    public String getTVA() {
-        return TVA;
-    }
-
-    public void setTVA(String TVA) {
-        this.TVA = TVA;
-    }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
     }
 
     public FlatBlock getFlatBlock() {
@@ -129,5 +110,13 @@ public class Invoice {
 
     public void setMaterialAndExecution(MaterialAndExecution materialAndExecution) {
         this.materialAndExecution = materialAndExecution;
+    }
+
+    public double getTva() {
+        return tva;
+    }
+
+    public void setTva(double tva) {
+        this.tva = tva;
     }
 }
