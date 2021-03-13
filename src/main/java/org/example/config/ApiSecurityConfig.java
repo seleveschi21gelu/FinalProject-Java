@@ -14,6 +14,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
 
 //        http.authorizeRequests().antMatchers("/api/**").hasAnyRole("USER");
         http.cors();
+        http.authorizeRequests().antMatchers("/api/register").permitAll();
         http.authorizeRequests().antMatchers("/api/**").authenticated();
         http.antMatcher("/api/**").httpBasic();
     }
