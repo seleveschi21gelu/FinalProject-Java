@@ -19,7 +19,7 @@ public class Invoice {
     Provider provider;
     LocalDate invoiceDate;
     double unitPrice;
-    String quantity;
+    int quantity;
     double tva;
     @ManyToOne
     @JoinColumn(name = "paid_status_id", referencedColumnName = "id")
@@ -28,6 +28,13 @@ public class Invoice {
     @JoinColumn(name = "flatblock_id", referencedColumnName = "id")
     FlatBlock flatBlock;
 
+    public double getTotalWithTva(){
+        return (unitPrice * quantity) * tva / 100 + (unitPrice * quantity);
+    }
+
+    public double getTotalWithoutTva(){
+        return unitPrice * quantity;
+    }
 
     public Invoice() {
     }
@@ -80,14 +87,6 @@ public class Invoice {
         this.paidStatus = status;
     }
 
-    public String getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
-    }
-
     public FlatBlock getFlatBlock() {
         return flatBlock;
     }
@@ -118,5 +117,13 @@ public class Invoice {
 
     public void setTva(double tva) {
         this.tva = tva;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
