@@ -9,8 +9,4 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan("org.example")
 @EntityScan("org.example.entity")
 @EnableJpaRepositories("org.example.repository")
-public class AppConfig {
-
-
-
-}
+public class AppConfig {}

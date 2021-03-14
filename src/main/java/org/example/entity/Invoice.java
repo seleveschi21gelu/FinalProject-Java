@@ -13,7 +13,6 @@ public class Invoice {
     @ManyToOne
     @JoinColumn(name = "material_id", referencedColumnName = "id")
     MaterialAndExecution materialAndExecution;
-
     @ManyToOne
     @JoinColumn(name = "provider_id", referencedColumnName = "id")
     Provider provider;
@@ -27,6 +26,10 @@ public class Invoice {
     @ManyToOne
     @JoinColumn(name = "flatblock_id", referencedColumnName = "id")
     FlatBlock flatBlock;
+
+    @ManyToOne
+    @JoinColumn(name = "client_id", referencedColumnName = "id")
+    Client client;
 
     public double getTotalWithTva(){
         return (unitPrice * quantity) * tva / 100 + (unitPrice * quantity);
@@ -125,5 +128,13 @@ public class Invoice {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }

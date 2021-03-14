@@ -13,14 +13,14 @@ public class Provider {
     Integer id;
     String name;
     String description;
-
-    public Provider(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
-
-    public Provider() {
-    }
+    String bank;
+    String iban;
+    String headquarters;
+    String country;
+    String cif;
+    String telephone;
+    String address;
+    String email;
 
     public Integer getId() {
         return id;
@@ -44,5 +44,69 @@ public class Provider {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getBank() {
+        return bank;
+    }
+
+    public void setBank(String bank) {
+        this.bank = bank;
+    }
+
+    public String getIban() {
+        return iban;
+    }
+
+    public void setIban(String iban) {
+        this.iban = iban;
+    }
+
+    public String getHeadquarters() {
+        return headquarters;
+    }
+
+    public void setHeadquarters(String headquarters) {
+        this.headquarters = headquarters;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCif() {
+        return cif;
+    }
+
+    public void setCif(String cif) {
+        this.cif = cif;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
