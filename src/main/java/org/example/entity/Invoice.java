@@ -31,12 +31,32 @@ public class Invoice {
     @JoinColumn(name = "client_id", referencedColumnName = "id")
     Client client;
 
-    public double getTotalWithTva(){
-        return (unitPrice * quantity) * tva / 100 + (unitPrice * quantity);
+    double totalWithoutTva;
+    double totalWithTva;
+
+    public double getTotalWithTva() {
+
+        return totalWithTva;
     }
 
-    public double getTotalWithoutTva(){
-        return unitPrice * quantity;
+    public double getTotalWithoutTva() {
+
+        return totalWithoutTva;
+    }
+
+    public void setTotalWithoutTva(double totalWithoutTva) {
+        this.totalWithoutTva = totalWithoutTva;
+    }
+
+    public void setTotalWithTva(double totalWithTva) {
+        this.totalWithTva = totalWithTva;
+    }
+
+    public void setTotalWithTvaDinamic(){
+        this.totalWithTva = (unitPrice * quantity) * tva / 100 + (unitPrice * quantity);
+    }
+    public void setTotalWithoutTvaDinamic(){
+        this.totalWithoutTva = unitPrice * quantity;
     }
 
     public Invoice() {

@@ -13,6 +13,8 @@ public class InvoiceService {
     private InvoiceRepository invoiceRepository;
 
     public Invoice addInvoices(Invoice invoice) {
+        invoice.setTotalWithTvaDinamic();
+        invoice.setTotalWithoutTvaDinamic();
         return invoiceRepository.save(invoice);
     }
 
