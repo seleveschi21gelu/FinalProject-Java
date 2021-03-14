@@ -15,7 +15,6 @@ public class Provider {
     String description;
     String bank;
     String iban;
-    String headquarters;
     String country;
     String cif;
     String telephone;
@@ -60,14 +59,6 @@ public class Provider {
 
     public void setIban(String iban) {
         this.iban = iban;
-    }
-
-    public String getHeadquarters() {
-        return headquarters;
-    }
-
-    public void setHeadquarters(String headquarters) {
-        this.headquarters = headquarters;
     }
 
     public String getCountry() {
