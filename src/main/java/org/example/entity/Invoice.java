@@ -31,6 +31,19 @@ public class Invoice {
     @JoinColumn(name = "client_id", referencedColumnName = "id")
     Client client;
 
+    public Invoice(String invoiceNumber, MaterialAndExecution materialAndExecution, Provider provider, LocalDate invoiceDate, double unitPrice, int quantity, double tva, PaidStatus paidStatus, FlatBlock flatBlock, Client client) {
+        this.invoiceNumber = invoiceNumber;
+        this.materialAndExecution = materialAndExecution;
+        this.provider = provider;
+        this.invoiceDate = invoiceDate;
+        this.unitPrice = unitPrice;
+        this.quantity = quantity;
+        this.tva = tva;
+        this.paidStatus = paidStatus;
+        this.flatBlock = flatBlock;
+        this.client = client;
+    }
+
     double totalWithoutTva;
     double totalWithTva;
 
@@ -52,10 +65,11 @@ public class Invoice {
         this.totalWithTva = totalWithTva;
     }
 
-    public void setTotalWithTvaDinamic(){
+    public void setTotalWithTvaDinamic() {
         this.totalWithTva = (unitPrice * quantity) * tva / 100 + (unitPrice * quantity);
     }
-    public void setTotalWithoutTvaDinamic(){
+
+    public void setTotalWithoutTvaDinamic() {
         this.totalWithoutTva = unitPrice * quantity;
     }
 

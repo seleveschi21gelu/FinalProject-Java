@@ -43,7 +43,7 @@ public class DeliveryTypeController {
     }
 
     @DeleteMapping("/{id}")
-    private ResponseEntity<?> deleteDeleveryType(@PathVariable Integer id) {
+    private ResponseEntity<?> deleteDeliveryType(@PathVariable Integer id) {
         deliveryTypeService.deleteDeliveryTypeById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

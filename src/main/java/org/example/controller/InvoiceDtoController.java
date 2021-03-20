@@ -2,21 +2,15 @@ package org.example.controller;
 
 import org.example.entity.*;
 import org.example.repository.*;
-import org.example.service.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin
 @RestController
-@RequestMapping("/bills")
-public class InvoiceRestController {
-
-    @Autowired
-    private InvoiceService invoiceService;
+@CrossOrigin
+@RequestMapping("/invoicedto")
+public class InvoiceDtoController {
 
     @Autowired
     private InvoiceDtoRepository invoiceDtoRepository;
@@ -33,15 +27,19 @@ public class InvoiceRestController {
     @Autowired
     private FlatBlockRepository flatBlockRepository;
 
-    @GetMapping
-    private ResponseEntity<List<Invoice>> findAllInvoices() {
-        List<Invoice> bills = invoiceService.findAllInvoices();
-        return new ResponseEntity(bills, HttpStatus.OK);
+    @Autowired
+    DeliveryTypeRepository deliveryTypeRepository;
+
+
+    @GetMapping()
+    public List<Invoice> getInvoices() {
+        return invoiceRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    private ResponseEntity<InvoiceDTO> findInvoicesById(@PathVariable Integer id) {
-        Invoice invoice = invoiceService.findInvoiceById(id);
+    public InvoiceDTO getInvoice(@PathVariable Integer id) {
+        Invoice invoice = invoiceRepository.findById(id).get();
+
         InvoiceDTO invoiceDTO = new InvoiceDTO(invoice.getInvoiceNumber(),
                 invoice.getMaterialAndExecution().getName(),
                 invoice.getProvider().getName(),
@@ -52,18 +50,38 @@ public class InvoiceRestController {
                 invoice.getPaidStatus().getName(),
                 invoice.getFlatBlock().getName(),
                 invoice.getClient().getName());
+        invoiceDTO.setId(id);
+        return invoiceDTO;
 
-        return new ResponseEntity<>(invoiceDTO, HttpStatus.OK);
     }
 
-    @PostMapping
-    private ResponseEntity<InvoiceDTO> addInvoices(@RequestBody InvoiceDTO invoice) {
-        invoiceService.addInvoice(invoice);
-        return new ResponseEntity<>(invoice, HttpStatus.CREATED);
+    @PostMapping()
+    public String addInvoice(@RequestBody InvoiceDTO invoiceDTO) {
+        MaterialAndExecution materialAndExecution = materialRepository.findByName(invoiceDTO.getMaterialAndExecution());
+        Provider provider = providersRepository.findByName(invoiceDTO.getProvider());
+        PaidStatus paidStatus = statusRepository.findByName(invoiceDTO.getPaidStatus());
+        FlatBlock flatBlock = flatBlockRepository.findByName(invoiceDTO.getFlatblock());
+        Client client = clientRepository.findByName(invoiceDTO.getClient());
+
+        Invoice invoice = new Invoice(
+                invoiceDTO.getInvoiceNumber(),
+                materialAndExecution,
+                provider,
+                invoiceDTO.getInvoiceDate(),
+                invoiceDTO.getUnitPrice(),
+                invoiceDTO.getQuantity(),
+                invoiceDTO.getTva(),
+                paidStatus,
+                flatBlock,
+                client);
+
+        invoiceRepository.save(invoice);
+        return "Success";
+
     }
 
     @PutMapping("/{id}")
-    private ResponseEntity<InvoiceDTO> updateInvoiceById(@PathVariable Integer id, @RequestBody InvoiceDTO invoiceDTO) {
+    public String updateInvoiceById(@PathVariable Integer id, @RequestBody InvoiceDTO invoiceDTO) {
         MaterialAndExecution materialAndExecution = materialRepository.findByName(invoiceDTO.getMaterialAndExecution());
         Provider provider = providersRepository.findByName(invoiceDTO.getProvider());
         PaidStatus paidStatus = statusRepository.findByName(invoiceDTO.getPaidStatus());
@@ -83,14 +101,15 @@ public class InvoiceRestController {
         invoice.setPaidStatus(paidStatus);
         invoice.setFlatBlock(flatBlock);
         invoice.setClient(client);
-        invoiceService.updateInvoiceById(invoice);
-        return new ResponseEntity<>(invoiceDTO, HttpStatus.ACCEPTED);
+
+        return "Success!";
+
+    }
+    @DeleteMapping
+    public String deleteInvoiceById(@PathVariable Integer id){
+        invoiceRepository.deleteById(id);
+        return "Success";
     }
 
-    @DeleteMapping("/{id}")
-    private ResponseEntity<?> deleteInvoice(@PathVariable Integer id) {
-        invoiceService.deleteInvoiceById(id);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 
 }

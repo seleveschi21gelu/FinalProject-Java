@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FlatBlockRepository extends JpaRepository<FlatBlock, Integer> {
+    FlatBlock findByName(String flatblock);
+
 }

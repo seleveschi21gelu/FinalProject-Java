@@ -1,9 +1,10 @@
 package org.example.service;
 
-import org.example.entity.Invoice;
-import org.example.repository.InvoiceRepository;
+import org.example.entity.*;
+import org.example.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -12,10 +13,45 @@ public class InvoiceService {
     @Autowired
     private InvoiceRepository invoiceRepository;
 
-    public Invoice addInvoices(Invoice invoice) {
-        invoice.setTotalWithTvaDinamic();
-        invoice.setTotalWithoutTvaDinamic();
-        return invoiceRepository.save(invoice);
+    @Autowired
+    private InvoiceDtoRepository invoiceDtoRepository;
+    @Autowired
+    private ClientRepository clientRepository;
+    @Autowired
+    private ProvidersRepository providersRepository;
+    @Autowired
+    private MaterialRepository materialRepository;
+    @Autowired
+    private StatusRepository statusRepository;
+    @Autowired
+    private FlatBlockRepository flatBlockRepository;
+
+    @Autowired
+    DeliveryTypeRepository deliveryTypeRepository;
+
+
+    public Invoice addInvoice(@RequestBody InvoiceDTO invoiceDTO) {
+        MaterialAndExecution materialAndExecution = materialRepository.findByName(invoiceDTO.getMaterialAndExecution());
+        Provider provider = providersRepository.findByName(invoiceDTO.getProvider());
+        PaidStatus paidStatus = statusRepository.findByName(invoiceDTO.getPaidStatus());
+        FlatBlock flatBlock = flatBlockRepository.findByName(invoiceDTO.getFlatblock());
+        Client client = clientRepository.findByName(invoiceDTO.getClient());
+
+        Invoice invoice = new Invoice(
+                invoiceDTO.getInvoiceNumber(),
+                materialAndExecution,
+                provider,
+                invoiceDTO.getInvoiceDate(),
+                invoiceDTO.getUnitPrice(),
+                invoiceDTO.getQuantity(),
+                invoiceDTO.getTva(),
+                paidStatus,
+                flatBlock,
+                client);
+
+       return invoiceRepository.save(invoice);
+//        return "Success";
+
     }
 
     public List<Invoice> findAllInvoices() {
