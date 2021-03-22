@@ -10,9 +10,11 @@ public class Invoice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
     String invoiceNumber;
+
     @ManyToOne
     @JoinColumn(name = "material_id", referencedColumnName = "id")
     MaterialAndExecution materialAndExecution;
+
     @ManyToOne
     @JoinColumn(name = "provider_id", referencedColumnName = "id")
     Provider provider;
@@ -20,18 +22,19 @@ public class Invoice {
     double unitPrice;
     int quantity;
     double tva;
+
     @ManyToOne
     @JoinColumn(name = "paid_status_id", referencedColumnName = "id")
     PaidStatus paidStatus;
-    @ManyToOne
-    @JoinColumn(name = "flatblock_id", referencedColumnName = "id")
-    FlatBlock flatBlock;
+//    @ManyToOne
+//    @JoinColumn(name = "flatblock_id", referencedColumnName = "id")
+//    FlatBlock flatBlock;
 
     @ManyToOne
     @JoinColumn(name = "client_id", referencedColumnName = "id")
     Client client;
 
-    public Invoice(String invoiceNumber, MaterialAndExecution materialAndExecution, Provider provider, LocalDate invoiceDate, double unitPrice, int quantity, double tva, PaidStatus paidStatus, FlatBlock flatBlock, Client client) {
+    public Invoice(String invoiceNumber, MaterialAndExecution materialAndExecution, Provider provider, LocalDate invoiceDate, double unitPrice, int quantity, double tva, PaidStatus paidStatus,Client client) {
         this.invoiceNumber = invoiceNumber;
         this.materialAndExecution = materialAndExecution;
         this.provider = provider;
@@ -40,7 +43,6 @@ public class Invoice {
         this.quantity = quantity;
         this.tva = tva;
         this.paidStatus = paidStatus;
-        this.flatBlock = flatBlock;
         this.client = client;
     }
 
@@ -124,13 +126,13 @@ public class Invoice {
         this.paidStatus = status;
     }
 
-    public FlatBlock getFlatBlock() {
-        return flatBlock;
-    }
-
-    public void setFlatBlock(FlatBlock flatBlock) {
-        this.flatBlock = flatBlock;
-    }
+//    public FlatBlock getFlatBlock() {
+//        return flatBlock;
+//    }
+//
+//    public void setFlatBlock(FlatBlock flatBlock) {
+//        this.flatBlock = flatBlock;
+//    }
 
     public MaterialAndExecution getMaterial() {
         return materialAndExecution;

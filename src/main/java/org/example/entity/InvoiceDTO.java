@@ -31,7 +31,7 @@ public class InvoiceDTO {
     public InvoiceDTO() {
     }
 
-    public InvoiceDTO(String invoiceNumber, String materialAndExecution, String provider, LocalDate invoiceDate, Double unitPrice, Integer quantity, Double tva, String paidStatus, String flatblock, String client) {
+    public InvoiceDTO(String invoiceNumber, String materialAndExecution, String provider, LocalDate invoiceDate, Double unitPrice, Integer quantity, Double tva, String paidStatus, String client) {
         this.invoiceNumber = invoiceNumber;
         this.materialAndExecution = materialAndExecution;
         this.provider = provider;
@@ -40,7 +40,7 @@ public class InvoiceDTO {
         this.quantity = quantity;
         this.tva = tva;
         this.paidStatus = paidStatus;
-        this.flatblock = flatblock;
+//        this.flatblock = flatblock;
         this.client = client;
     }
 

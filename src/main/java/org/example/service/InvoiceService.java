@@ -34,7 +34,7 @@ public class InvoiceService {
         MaterialAndExecution materialAndExecution = materialRepository.findByName(invoiceDTO.getMaterialAndExecution());
         Provider provider = providersRepository.findByName(invoiceDTO.getProvider());
         PaidStatus paidStatus = statusRepository.findByName(invoiceDTO.getPaidStatus());
-        FlatBlock flatBlock = flatBlockRepository.findByName(invoiceDTO.getFlatblock());
+//        FlatBlock flatBlock = flatBlockRepository.findByName(invoiceDTO.getFlatblock());
         Client client = clientRepository.findByName(invoiceDTO.getClient());
 
         Invoice invoice = new Invoice(
@@ -46,7 +46,6 @@ public class InvoiceService {
                 invoiceDTO.getQuantity(),
                 invoiceDTO.getTva(),
                 paidStatus,
-                flatBlock,
                 client);
 
        return invoiceRepository.save(invoice);

@@ -50,7 +50,7 @@ public class InvoiceRestController {
                 invoice.getQuantity(),
                 invoice.getTva(),
                 invoice.getPaidStatus().getName(),
-                invoice.getFlatBlock().getName(),
+//                invoice.getFlatBlock().getName(),
                 invoice.getClient().getName());
 
         return new ResponseEntity<>(invoiceDTO, HttpStatus.OK);
@@ -67,7 +67,7 @@ public class InvoiceRestController {
         MaterialAndExecution materialAndExecution = materialRepository.findByName(invoiceDTO.getMaterialAndExecution());
         Provider provider = providersRepository.findByName(invoiceDTO.getProvider());
         PaidStatus paidStatus = statusRepository.findByName(invoiceDTO.getPaidStatus());
-        FlatBlock flatBlock = flatBlockRepository.findByName(invoiceDTO.getFlatblock());
+//        FlatBlock flatBlock = flatBlockRepository.findByName(invoiceDTO.getFlatblock());
         Client client = clientRepository.findByName(invoiceDTO.getClient());
 
         Invoice invoice = new Invoice();
@@ -81,7 +81,7 @@ public class InvoiceRestController {
         invoice.setQuantity(invoiceDTO.getQuantity());
         invoice.setTva(invoiceDTO.getTva());
         invoice.setPaidStatus(paidStatus);
-        invoice.setFlatBlock(flatBlock);
+//        invoice.setFlatBlock(flatBlock);
         invoice.setClient(client);
         invoiceService.updateInvoiceById(invoice);
         return new ResponseEntity<>(invoiceDTO, HttpStatus.ACCEPTED);

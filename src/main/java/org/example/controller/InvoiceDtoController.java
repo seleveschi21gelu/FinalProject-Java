@@ -48,7 +48,7 @@ public class InvoiceDtoController {
                 invoice.getQuantity(),
                 invoice.getTva(),
                 invoice.getPaidStatus().getName(),
-                invoice.getFlatBlock().getName(),
+//                invoice.getFlatBlock().getName(),
                 invoice.getClient().getName());
         invoiceDTO.setId(id);
         return invoiceDTO;
@@ -60,7 +60,7 @@ public class InvoiceDtoController {
         MaterialAndExecution materialAndExecution = materialRepository.findByName(invoiceDTO.getMaterialAndExecution());
         Provider provider = providersRepository.findByName(invoiceDTO.getProvider());
         PaidStatus paidStatus = statusRepository.findByName(invoiceDTO.getPaidStatus());
-        FlatBlock flatBlock = flatBlockRepository.findByName(invoiceDTO.getFlatblock());
+//        FlatBlock flatBlock = flatBlockRepository.findByName(invoiceDTO.getFlatblock());
         Client client = clientRepository.findByName(invoiceDTO.getClient());
 
         Invoice invoice = new Invoice(
@@ -72,7 +72,6 @@ public class InvoiceDtoController {
                 invoiceDTO.getQuantity(),
                 invoiceDTO.getTva(),
                 paidStatus,
-                flatBlock,
                 client);
 
         invoiceRepository.save(invoice);
@@ -99,7 +98,7 @@ public class InvoiceDtoController {
         invoice.setQuantity(invoiceDTO.getQuantity());
         invoice.setTva(invoiceDTO.getTva());
         invoice.setPaidStatus(paidStatus);
-        invoice.setFlatBlock(flatBlock);
+//        invoice.setFlatBlock(flatBlock);
         invoice.setClient(client);
 
         return "Success!";
