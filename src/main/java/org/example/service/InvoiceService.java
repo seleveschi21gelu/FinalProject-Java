@@ -37,6 +37,8 @@ public class InvoiceService {
 //        FlatBlock flatBlock = flatBlockRepository.findByName(invoiceDTO.getFlatblock());
         Client client = clientRepository.findByName(invoiceDTO.getClient());
 
+
+
         Invoice invoice = new Invoice(
                 invoiceDTO.getInvoiceNumber(),
                 materialAndExecution,
@@ -48,6 +50,9 @@ public class InvoiceService {
                 paidStatus,
                 client);
 
+        invoice.setTotalWithoutTva(invoice.getTotalWithoutTva());
+        invoice.setTotalWithTva(invoice.getTotalWithTva());
+
        return invoiceRepository.save(invoice);
 //        return "Success";
 
@@ -58,6 +63,10 @@ public class InvoiceService {
     }
 
     public Invoice findInvoiceById(Integer id) {
+        Invoice invoice = new Invoice();
+        invoice.setTotalWithoutTva(invoice.getTotalWithoutTva());
+        invoice.setTotalWithTva(invoice.getTotalWithTva());
+        invoiceRepository.save(invoice);
         return invoiceRepository.findById(id).orElseThrow(() -> new RuntimeException("Invoice by id " + id + " was not found"));
     }
 

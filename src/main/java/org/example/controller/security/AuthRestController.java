@@ -33,6 +33,7 @@ public class AuthRestController {
         userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
         userEntity.setEnabled(true);
         userEntity = userRepository.save(userEntity);
+
         AuthorityEntity authorityEntity = new AuthorityEntity();
         authorityEntity.setUsername(userEntity.getUsername());
         authorityEntity.setAuthority("USER");

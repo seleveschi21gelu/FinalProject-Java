@@ -44,6 +44,13 @@ public class InvoiceDTO {
         this.client = client;
     }
 
+    public InvoiceDTO(String materialAndExecution, String provider, String paidStatus, String client) {
+        this.materialAndExecution = materialAndExecution;
+        this.provider = provider;
+        this.paidStatus = paidStatus;
+        this.client = client;
+    }
+
     public Integer getId() {
         return id;
     }

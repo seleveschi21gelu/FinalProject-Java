@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin
@@ -36,8 +37,22 @@ public class InvoiceRestController {
     @GetMapping
     private ResponseEntity<List<Invoice>> findAllInvoices() {
         List<Invoice> bills = invoiceService.findAllInvoices();
-        return new ResponseEntity(bills, HttpStatus.OK);
+        List<InvoiceDTO> invoiceDTOS = new ArrayList<>();
+        for (Invoice invoice : bills) {
+            invoiceDTOS.add(new InvoiceDTO(invoice.getInvoiceNumber(),
+                    invoice.getMaterialAndExecution().getName(),
+                    invoice.getProvider().getName(),
+                    invoice.getInvoiceDate(),
+                    invoice.getUnitPrice(),
+                    invoice.getQuantity(),
+                    invoice.getTva(),
+                    invoice.getPaidStatus().getName(),
+                    invoice.getClient().getName()));
+
+        }
+        return new ResponseEntity(invoiceDTOS, HttpStatus.OK);
     }
+
 
     @GetMapping("/{id}")
     private ResponseEntity<InvoiceDTO> findInvoicesById(@PathVariable Integer id) {
