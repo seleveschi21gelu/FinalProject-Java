@@ -34,7 +34,20 @@ public class Invoice {
     @JoinColumn(name = "client_id", referencedColumnName = "id")
     Client client;
 
-    public Invoice(String invoiceNumber, MaterialAndExecution materialAndExecution, Provider provider, LocalDate invoiceDate, double unitPrice, int quantity, double tva, PaidStatus paidStatus,Client client) {
+    public Invoice(Integer id, String invoiceNumber, MaterialAndExecution materialAndExecution, Provider provider, LocalDate invoiceDate, double unitPrice, int quantity, double tva, PaidStatus paidStatus, Client client) {
+        this.id = id;
+        this.invoiceNumber = invoiceNumber;
+        this.materialAndExecution = materialAndExecution;
+        this.provider = provider;
+        this.invoiceDate = invoiceDate;
+        this.unitPrice = unitPrice;
+        this.quantity = quantity;
+        this.tva = tva;
+        this.paidStatus = paidStatus;
+        this.client = client;
+    }
+
+    public Invoice(String invoiceNumber, MaterialAndExecution materialAndExecution, Provider provider, LocalDate invoiceDate, double unitPrice, int quantity, double tva, PaidStatus paidStatus, Client client) {
         this.invoiceNumber = invoiceNumber;
         this.materialAndExecution = materialAndExecution;
         this.provider = provider;

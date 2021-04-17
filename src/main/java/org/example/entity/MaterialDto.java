@@ -1,24 +1,28 @@
 package org.example.entity;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class PaidStatus {
+public class MaterialDto {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private Integer id;
 
-    String name;
+    private String name;
+    private String deliveryType;
 
-    public PaidStatus() {
+    public MaterialDto(String name, String deliveryType) {
+        this.name = name;
+        this.deliveryType = deliveryType;
     }
 
-    public PaidStatus(String name) {
-        this.name = name;
+    public MaterialDto() {
     }
 
     public Integer getId() {
@@ -35,5 +39,13 @@ public class PaidStatus {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDeliveryType() {
+        return deliveryType;
+    }
+
+    public void setDeliveryType(String deliveryType) {
+        this.deliveryType = deliveryType;
     }
 }

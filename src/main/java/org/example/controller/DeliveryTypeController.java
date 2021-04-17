@@ -31,14 +31,14 @@ public class DeliveryTypeController {
 
     @PostMapping
     private ResponseEntity<DeliveryType> addDeliveryType(@RequestBody DeliveryType deliveryType) {
-        deliveryTypeService.addOrUpdateDeliveryType(deliveryType);
+        deliveryTypeService.addDeliveryType(deliveryType);
         return new ResponseEntity<>(deliveryType, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     private ResponseEntity<DeliveryType> updateFlatBlockById(@PathVariable Integer id, @RequestBody DeliveryType deliveryType) {
         deliveryType.setId(id);
-        deliveryTypeService.addOrUpdateDeliveryType(deliveryType);
+        deliveryTypeService.updateDeliveryType(deliveryType);
         return new ResponseEntity<>(deliveryType, HttpStatus.ACCEPTED);
     }
 

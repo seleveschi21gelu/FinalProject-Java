@@ -31,6 +31,19 @@ public class InvoiceDTO {
     public InvoiceDTO() {
     }
 
+    public InvoiceDTO(Integer id, String invoiceNumber, String materialAndExecution, String provider, LocalDate invoiceDate, Double unitPrice, Integer quantity, Double tva, String paidStatus,  String client) {
+        this.id = id;
+        this.invoiceNumber = invoiceNumber;
+        this.materialAndExecution = materialAndExecution;
+        this.provider = provider;
+        this.invoiceDate = invoiceDate;
+        this.unitPrice = unitPrice;
+        this.quantity = quantity;
+        this.tva = tva;
+        this.paidStatus = paidStatus;
+        this.client = client;
+    }
+
     public InvoiceDTO(String invoiceNumber, String materialAndExecution, String provider, LocalDate invoiceDate, Double unitPrice, Integer quantity, Double tva, String paidStatus, String client) {
         this.invoiceNumber = invoiceNumber;
         this.materialAndExecution = materialAndExecution;
@@ -50,6 +63,8 @@ public class InvoiceDTO {
         this.paidStatus = paidStatus;
         this.client = client;
     }
+
+
 
     public Integer getId() {
         return id;

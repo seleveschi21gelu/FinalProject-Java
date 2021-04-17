@@ -24,8 +24,6 @@ public class InvoiceDtoController {
     private MaterialRepository materialRepository;
     @Autowired
     private StatusRepository statusRepository;
-    @Autowired
-    private FlatBlockRepository flatBlockRepository;
 
     @Autowired
     DeliveryTypeRepository deliveryTypeRepository;
@@ -84,7 +82,7 @@ public class InvoiceDtoController {
         MaterialAndExecution materialAndExecution = materialRepository.findByName(invoiceDTO.getMaterialAndExecution());
         Provider provider = providersRepository.findByName(invoiceDTO.getProvider());
         PaidStatus paidStatus = statusRepository.findByName(invoiceDTO.getPaidStatus());
-        FlatBlock flatBlock = flatBlockRepository.findByName(invoiceDTO.getFlatblock());
+
         Client client = clientRepository.findByName(invoiceDTO.getClient());
 
         Invoice invoice = new Invoice();

@@ -19,6 +19,11 @@ public class MaterialAndExecution {
         this.deliveryType = deliveryType;
     }
 
+    public MaterialAndExecution(String name, DeliveryType deliveryType) {
+        this.name = name;
+        this.deliveryType = deliveryType;
+    }
+
     public MaterialAndExecution() {
     }
 

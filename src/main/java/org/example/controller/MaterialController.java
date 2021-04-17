@@ -1,13 +1,16 @@
 package org.example.controller;
 
 import org.example.entity.MaterialAndExecution;
+import org.example.entity.MaterialDto;
 import org.example.service.MaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/material")
@@ -19,7 +22,11 @@ public class MaterialController {
     @GetMapping
     private ResponseEntity<List<MaterialAndExecution>> getAllMaterials() {
         List<MaterialAndExecution> list = materialService.getMaterialList();
-        return new ResponseEntity<>(list, HttpStatus.OK);
+//        List<MaterialDto> materialDtos = new ArrayList<>();
+//        for (MaterialAndExecution material : list) {
+//            materialDtos.add(new MaterialDto(material.getName(), material.getDeliveryType().getName()));
+//        }
+        return new ResponseEntity(list, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -46,5 +53,6 @@ public class MaterialController {
         materialService.deleteMaterialById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
 
 }

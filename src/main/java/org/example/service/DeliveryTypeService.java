@@ -21,7 +21,11 @@ public class DeliveryTypeService {
         return deliveryTypeRepository.findById(id).orElseThrow(() -> new RuntimeException("The deliveryType fom id " + id + "was not found"));
     }
 
-    public DeliveryType addOrUpdateDeliveryType(DeliveryType deliveryType) {
+    public DeliveryType addDeliveryType(DeliveryType deliveryType){
+        return deliveryTypeRepository.save(deliveryType);
+    }
+
+    public DeliveryType updateDeliveryType(DeliveryType deliveryType) {
         return deliveryTypeRepository.save(deliveryType);
     }
 

@@ -31,15 +31,14 @@ public class InvoiceRestController {
     private MaterialRepository materialRepository;
     @Autowired
     private StatusRepository statusRepository;
-    @Autowired
-    private FlatBlockRepository flatBlockRepository;
+
 
     @GetMapping
     private ResponseEntity<List<Invoice>> findAllInvoices() {
         List<Invoice> bills = invoiceService.findAllInvoices();
         List<InvoiceDTO> invoiceDTOS = new ArrayList<>();
         for (Invoice invoice : bills) {
-            invoiceDTOS.add(new InvoiceDTO(invoice.getInvoiceNumber(),
+            invoiceDTOS.add(new InvoiceDTO(invoice.getId(), invoice.getInvoiceNumber(),
                     invoice.getMaterialAndExecution().getName(),
                     invoice.getProvider().getName(),
                     invoice.getInvoiceDate(),
@@ -53,11 +52,17 @@ public class InvoiceRestController {
         return new ResponseEntity(invoiceDTOS, HttpStatus.OK);
     }
 
+//    @GetMapping("/{id}")
+//    public ResponseEntity<InvoiceDTO> findInvoiceById(@PathVariable Integer id) {
+//    InvoiceDTO invoiceDTO = invoiceService.findInvoiceById(id);
+//
+//        return new ResponseEntity<>(invoiceDTO, HttpStatus.OK);
+//    }
 
     @GetMapping("/{id}")
     private ResponseEntity<InvoiceDTO> findInvoicesById(@PathVariable Integer id) {
         Invoice invoice = invoiceService.findInvoiceById(id);
-        InvoiceDTO invoiceDTO = new InvoiceDTO(invoice.getInvoiceNumber(),
+        InvoiceDTO invoiceDTO = new InvoiceDTO(invoice.getId(), invoice.getInvoiceNumber(),
                 invoice.getMaterialAndExecution().getName(),
                 invoice.getProvider().getName(),
                 invoice.getInvoiceDate(),
@@ -65,17 +70,44 @@ public class InvoiceRestController {
                 invoice.getQuantity(),
                 invoice.getTva(),
                 invoice.getPaidStatus().getName(),
-//                invoice.getFlatBlock().getName(),
                 invoice.getClient().getName());
 
         return new ResponseEntity<>(invoiceDTO, HttpStatus.OK);
     }
 
+    //    @PostMapping
+//    private Invoice addBills(@RequestBody Invoice invoice) {
+//        InvoiceDTO invoiceDTO = new InvoiceDTO();
+//
+//        invoiceService.addInvoice(invoiceDTO);
+//        return invoiceService.addBills(invoice);
+//    }
     @PostMapping
-    private ResponseEntity<InvoiceDTO> addInvoices(@RequestBody InvoiceDTO invoice) {
-        invoiceService.addInvoice(invoice);
-        return new ResponseEntity<>(invoice, HttpStatus.CREATED);
+    public Invoice addInvoice(@RequestBody InvoiceDTO invoiceDTO) {
+        MaterialAndExecution materialAndExecution = materialRepository.findByName(invoiceDTO.getMaterialAndExecution());
+        Provider provider = providersRepository.findByName(invoiceDTO.getProvider());
+        PaidStatus paidStatus = statusRepository.findByName(invoiceDTO.getPaidStatus());
+        Client client = clientRepository.findByName(invoiceDTO.getClient());
+
+
+        Invoice invoice = new Invoice(
+                invoiceDTO.getInvoiceNumber(),
+                materialAndExecution,
+                provider,
+                invoiceDTO.getInvoiceDate(),
+                invoiceDTO.getUnitPrice(),
+                invoiceDTO.getQuantity(),
+                invoiceDTO.getTva(),
+                paidStatus,
+                client);
+        return invoiceRepository.save(invoice);
     }
+
+//    @PostMapping
+//    private ResponseEntity<InvoiceDTO> addInvoices(@RequestBody InvoiceDTO invoice) {
+//        invoiceService.addInvoice(invoice);
+//        return new ResponseEntity<>(invoice, HttpStatus.CREATED);
+//    }
 
     @PutMapping("/{id}")
     private ResponseEntity<InvoiceDTO> updateInvoiceById(@PathVariable Integer id, @RequestBody InvoiceDTO invoiceDTO) {

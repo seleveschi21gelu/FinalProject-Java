@@ -15,6 +15,13 @@ public class DeliveryType {
 
     String name;
 
+    public DeliveryType(String name) {
+        this.name = name;
+    }
+
+    public DeliveryType() {
+    }
+
     public Integer getId() {
         return id;
     }

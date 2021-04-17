@@ -23,11 +23,15 @@ public class InvoiceService {
     private MaterialRepository materialRepository;
     @Autowired
     private StatusRepository statusRepository;
-    @Autowired
-    private FlatBlockRepository flatBlockRepository;
+
 
     @Autowired
     DeliveryTypeRepository deliveryTypeRepository;
+
+//    public Invoice addBills(Invoice invoice) {
+//        return invoiceRepository.save(invoice);
+//
+//    }
 
 
     public Invoice addInvoice(@RequestBody InvoiceDTO invoiceDTO) {
@@ -36,7 +40,6 @@ public class InvoiceService {
         PaidStatus paidStatus = statusRepository.findByName(invoiceDTO.getPaidStatus());
 //        FlatBlock flatBlock = flatBlockRepository.findByName(invoiceDTO.getFlatblock());
         Client client = clientRepository.findByName(invoiceDTO.getClient());
-
 
 
         Invoice invoice = new Invoice(
@@ -49,11 +52,11 @@ public class InvoiceService {
                 invoiceDTO.getTva(),
                 paidStatus,
                 client);
+//
+//        invoice.setTotalWithoutTva(invoice.getTotalWithoutTva());
+//        invoice.setTotalWithTva(invoice.getTotalWithTva());
 
-        invoice.setTotalWithoutTva(invoice.getTotalWithoutTva());
-        invoice.setTotalWithTva(invoice.getTotalWithTva());
-
-       return invoiceRepository.save(invoice);
+        return invoiceRepository.save(invoice);
 //        return "Success";
 
     }
@@ -63,11 +66,22 @@ public class InvoiceService {
     }
 
     public Invoice findInvoiceById(Integer id) {
-        Invoice invoice = new Invoice();
-        invoice.setTotalWithoutTva(invoice.getTotalWithoutTva());
-        invoice.setTotalWithTva(invoice.getTotalWithTva());
-        invoiceRepository.save(invoice);
+//        Invoice invoice = new Invoice();
+//        invoice.setTotalWithoutTva(invoice.getTotalWithoutTva());
+//        invoice.setTotalWithTva(invoice.getTotalWithTva());
+//        invoiceRepository.save(invoice);
         return invoiceRepository.findById(id).orElseThrow(() -> new RuntimeException("Invoice by id " + id + " was not found"));
+//        InvoiceDTO invoiceDTO = new InvoiceDTO(invoice.getId(),
+//                invoice.getInvoiceNumber(),
+//                invoice.getMaterialAndExecution().getName(),
+//                invoice.getProvider().getName(),
+//                invoice.getInvoiceDate(),
+//                invoice.getUnitPrice(),
+//                invoice.getQuantity(),
+//                invoice.getTva(),
+//                invoice.getPaidStatus().getName(),
+//                invoice.getClient().getName());
+//        return invoiceDTO;
     }
 
     public Invoice updateInvoiceById(Invoice invoice) {
@@ -77,7 +91,6 @@ public class InvoiceService {
     public void deleteInvoiceById(Integer id) {
         invoiceRepository.deleteById(id);
     }
-
 
 
 }
