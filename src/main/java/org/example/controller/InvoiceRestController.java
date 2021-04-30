@@ -114,7 +114,6 @@ public class InvoiceRestController {
         MaterialAndExecution materialAndExecution = materialRepository.findByName(invoiceDTO.getMaterialAndExecution());
         Provider provider = providersRepository.findByName(invoiceDTO.getProvider());
         PaidStatus paidStatus = statusRepository.findByName(invoiceDTO.getPaidStatus());
-//        FlatBlock flatBlock = flatBlockRepository.findByName(invoiceDTO.getFlatblock());
         Client client = clientRepository.findByName(invoiceDTO.getClient());
 
         Invoice invoice = new Invoice();

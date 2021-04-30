@@ -13,11 +13,11 @@ public class MaterialAndExecution {
     @JoinColumn(name = "deliveryType_id", referencedColumnName = "id")
     DeliveryType deliveryType;
 
-    public MaterialAndExecution(Integer id, String name, DeliveryType deliveryType) {
-        this.id = id;
-        this.name = name;
-        this.deliveryType = deliveryType;
-    }
+//    public MaterialAndExecution(Integer id, String name, DeliveryType deliveryType) {
+//        this.id = id;
+//        this.name = name;
+//        this.deliveryType = deliveryType;
+//    }
 
     public MaterialAndExecution(String name, DeliveryType deliveryType) {
         this.name = name;
@@ -41,14 +41,6 @@ public class MaterialAndExecution {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public DeliveryType getType() {
-        return deliveryType;
-    }
-
-    public void setType(DeliveryType type) {
-        this.deliveryType = type;
     }
 
     public DeliveryType getDeliveryType() {
