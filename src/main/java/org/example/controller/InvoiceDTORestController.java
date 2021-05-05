@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/invoicedto")
-public class InvoiceDtoController {
+public class InvoiceDTORestController {
 
     @Autowired
     private InvoiceDtoRepository invoiceDtoRepository;
@@ -23,7 +23,7 @@ public class InvoiceDtoController {
     @Autowired
     private MaterialRepository materialRepository;
     @Autowired
-    private StatusRepository statusRepository;
+    private PaidStatusRepository paidStatusRepository;
 
     @Autowired
     DeliveryTypeRepository deliveryTypeRepository;
@@ -39,7 +39,7 @@ public class InvoiceDtoController {
         Invoice invoice = invoiceRepository.findById(id).get();
 
         InvoiceDTO invoiceDTO = new InvoiceDTO(invoice.getInvoiceNumber(),
-                invoice.getMaterialAndExecution().getName(),
+                invoice.getMaterial().getName(),
                 invoice.getProvider().getName(),
                 invoice.getInvoiceDate(),
                 invoice.getUnitPrice(),
@@ -55,15 +55,15 @@ public class InvoiceDtoController {
 
     @PostMapping()
     public String addInvoice(@RequestBody InvoiceDTO invoiceDTO) {
-        MaterialAndExecution materialAndExecution = materialRepository.findByName(invoiceDTO.getMaterialAndExecution());
+        Material material = materialRepository.findByName(invoiceDTO.getMaterialAndExecution());
         Provider provider = providersRepository.findByName(invoiceDTO.getProvider());
-        PaidStatus paidStatus = statusRepository.findByName(invoiceDTO.getPaidStatus());
+        PaidStatus paidStatus = paidStatusRepository.findByName(invoiceDTO.getPaidStatus());
 //        FlatBlock flatBlock = flatBlockRepository.findByName(invoiceDTO.getFlatblock());
         Client client = clientRepository.findByName(invoiceDTO.getClient());
 
         Invoice invoice = new Invoice(
                 invoiceDTO.getInvoiceNumber(),
-                materialAndExecution,
+                material,
                 provider,
                 invoiceDTO.getInvoiceDate(),
                 invoiceDTO.getUnitPrice(),
@@ -79,9 +79,9 @@ public class InvoiceDtoController {
 
     @PutMapping("/{id}")
     public String updateInvoiceById(@PathVariable Integer id, @RequestBody InvoiceDTO invoiceDTO) {
-        MaterialAndExecution materialAndExecution = materialRepository.findByName(invoiceDTO.getMaterialAndExecution());
+        Material material = materialRepository.findByName(invoiceDTO.getMaterialAndExecution());
         Provider provider = providersRepository.findByName(invoiceDTO.getProvider());
-        PaidStatus paidStatus = statusRepository.findByName(invoiceDTO.getPaidStatus());
+        PaidStatus paidStatus = paidStatusRepository.findByName(invoiceDTO.getPaidStatus());
 
         Client client = clientRepository.findByName(invoiceDTO.getClient());
 
@@ -89,7 +89,7 @@ public class InvoiceDtoController {
 
         invoice.setId(id);
         invoice.setInvoiceNumber(invoiceDTO.getInvoiceNumber());
-        invoice.setMaterialAndExecution(materialAndExecution);
+        invoice.setMaterial(material);
         invoice.setProvider(provider);
         invoice.setInvoiceDate(invoiceDTO.getInvoiceDate());
         invoice.setUnitPrice(invoiceDTO.getUnitPrice());

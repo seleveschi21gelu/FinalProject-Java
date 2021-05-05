@@ -11,7 +11,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping("/paidStatus")
-public class PaidStatusController {
+public class PaidStatusRestController {
 
     @Autowired
     private PaidStatusService paidStatusService;

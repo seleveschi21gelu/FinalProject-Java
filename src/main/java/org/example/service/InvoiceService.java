@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,29 +23,21 @@ public class InvoiceService {
     @Autowired
     private MaterialRepository materialRepository;
     @Autowired
-    private StatusRepository statusRepository;
-
-
+    private PaidStatusRepository paidStatusRepository;
     @Autowired
-    DeliveryTypeRepository deliveryTypeRepository;
-
-//    public Invoice addBills(Invoice invoice) {
-//        return invoiceRepository.save(invoice);
-//
-//    }
+    private DeliveryTypeRepository deliveryTypeRepository;
 
 
-    public Invoice addInvoice(@RequestBody InvoiceDTO invoiceDTO) {
-        MaterialAndExecution materialAndExecution = materialRepository.findByName(invoiceDTO.getMaterialAndExecution());
+    public InvoiceDTO addInvoice(InvoiceDTO invoiceDTO) {
+        Material material = materialRepository.findByName(invoiceDTO.getMaterialAndExecution());
         Provider provider = providersRepository.findByName(invoiceDTO.getProvider());
-        PaidStatus paidStatus = statusRepository.findByName(invoiceDTO.getPaidStatus());
-//        FlatBlock flatBlock = flatBlockRepository.findByName(invoiceDTO.getFlatblock());
+        PaidStatus paidStatus = paidStatusRepository.findByName(invoiceDTO.getPaidStatus());
         Client client = clientRepository.findByName(invoiceDTO.getClient());
 
 
         Invoice invoice = new Invoice(
                 invoiceDTO.getInvoiceNumber(),
-                materialAndExecution,
+                material,
                 provider,
                 invoiceDTO.getInvoiceDate(),
                 invoiceDTO.getUnitPrice(),
@@ -52,41 +45,73 @@ public class InvoiceService {
                 invoiceDTO.getTva(),
                 paidStatus,
                 client);
-//
-//        invoice.setTotalWithoutTva(invoice.getTotalWithoutTva());
-//        invoice.setTotalWithTva(invoice.getTotalWithTva());
 
-        return invoiceRepository.save(invoice);
-//        return "Success";
+         invoiceRepository.save(invoice);
+         return invoiceDTO;
+
 
     }
 
-    public List<Invoice> findAllInvoices() {
-        return invoiceRepository.findAll();
+    public List<InvoiceDTO> findAllInvoices() {
+        List<Invoice> invoicesList = invoiceRepository.findAll();
+        List<InvoiceDTO> invoiceDTOList = new ArrayList<>();
+        for (Invoice invoice : invoicesList) {
+            invoiceDTOList.add(new InvoiceDTO(
+                    invoice.getId(),
+                    invoice.getInvoiceNumber(),
+                    invoice.getMaterial().getName(),
+                    invoice.getProvider().getName(),
+                    invoice.getInvoiceDate(),
+                    invoice.getUnitPrice(),
+                    invoice.getQuantity(),
+                    invoice.getTva(),
+                    invoice.getPaidStatus().getName(),
+                    invoice.getClient().getName()));
+        }
+        return invoiceDTOList;
     }
 
-    public Invoice findInvoiceById(Integer id) {
-//        Invoice invoice = new Invoice();
-//        invoice.setTotalWithoutTva(invoice.getTotalWithoutTva());
-//        invoice.setTotalWithTva(invoice.getTotalWithTva());
-//        invoiceRepository.save(invoice);
-        return invoiceRepository.findById(id).orElseThrow(() -> new RuntimeException("Invoice by id " + id + " was not found"));
-//        InvoiceDTO invoiceDTO = new InvoiceDTO(invoice.getId(),
-//                invoice.getInvoiceNumber(),
-//                invoice.getMaterialAndExecution().getName(),
-//                invoice.getProvider().getName(),
-//                invoice.getInvoiceDate(),
-//                invoice.getUnitPrice(),
-//                invoice.getQuantity(),
-//                invoice.getTva(),
-//                invoice.getPaidStatus().getName(),
-//                invoice.getClient().getName());
-//        return invoiceDTO;
+    public InvoiceDTO findInvoiceById(Integer id) {
+        Invoice invoice = invoiceRepository.findById(id).orElseThrow(() -> new RuntimeException("The invoice from id " + id + " was not found"));
+
+        InvoiceDTO invoiceDTO = new InvoiceDTO(invoice.getId(),
+                invoice.getInvoiceNumber(),
+                invoice.getMaterial().getName(),
+                invoice.getProvider().getName(),
+                invoice.getInvoiceDate(),
+                invoice.getUnitPrice(),
+                invoice.getQuantity(),
+                invoice.getTva(),
+                invoice.getPaidStatus().getName(),
+                invoice.getClient().getName());
+
+        return invoiceDTO;
+
     }
 
-    public Invoice updateInvoiceById(Invoice invoice) {
-        return invoiceRepository.save(invoice);
+    public InvoiceDTO updateInvoiceById(@RequestBody InvoiceDTO invoiceDTO) {
+        Material material = materialRepository.findByName(invoiceDTO.getMaterialAndExecution());
+        Provider provider = providersRepository.findByName(invoiceDTO.getProvider());
+        PaidStatus paidStatus = paidStatusRepository.findByName(invoiceDTO.getPaidStatus());
+        Client client = clientRepository.findByName(invoiceDTO.getClient());
+
+        Invoice invoice = new Invoice();
+
+        invoice.setId(invoiceDTO.getId());
+        invoice.setInvoiceNumber(invoiceDTO.getInvoiceNumber());
+        invoice.setMaterial(material);
+        invoice.setProvider(provider);
+        invoice.setInvoiceDate(invoiceDTO.getInvoiceDate());
+        invoice.setUnitPrice(invoiceDTO.getUnitPrice());
+        invoice.setQuantity(invoiceDTO.getQuantity());
+        invoice.setTva(invoiceDTO.getTva());
+        invoice.setPaidStatus(paidStatus);
+        invoice.setClient(client);
+
+        invoiceRepository.save(invoice);
+        return invoiceDTO;
     }
+
 
     public void deleteInvoiceById(Integer id) {
         invoiceRepository.deleteById(id);

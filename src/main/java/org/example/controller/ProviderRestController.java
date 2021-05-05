@@ -12,7 +12,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping("/provider")
-public class ProviderController {
+public class ProviderRestController {
 
     @Autowired
     private ProvidersService providerService;

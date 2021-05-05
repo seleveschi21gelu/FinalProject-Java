@@ -1,7 +1,6 @@
 package org.example.service;
 
 import org.example.entity.Client;
-import org.example.entity.FiscalBill;
 import org.example.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

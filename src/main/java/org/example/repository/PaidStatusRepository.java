@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface StatusRepository extends JpaRepository<PaidStatus,Integer> {
+public interface PaidStatusRepository extends JpaRepository<PaidStatus,Integer> {
 
     PaidStatus findByName(String paidStatus);
 
