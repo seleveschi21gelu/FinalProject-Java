@@ -46,8 +46,14 @@ public class InvoiceService {
                 paidStatus,
                 client);
 
-         invoiceRepository.save(invoice);
-         return invoiceDTO;
+        invoice.setTotalWithTvaDinamic();
+        invoice.setTotalWithoutTvaDinamic();
+
+        invoiceDTO.setTotalWithTvaDinamic();
+        invoiceDTO.setTotalWithoutTvaDinamic();
+
+        invoiceRepository.save(invoice);
+        return invoiceDTO;
 
 
     }
