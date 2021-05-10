@@ -3,7 +3,7 @@ package org.example.entity;
 import javax.persistence.*;
 
 @Entity
-public class Material {
+public class MaterialAndExecution {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
@@ -19,12 +19,12 @@ public class Material {
 //        this.deliveryType = deliveryType;
 //    }
 
-    public Material(String name, DeliveryType deliveryType) {
+    public MaterialAndExecution(String name, DeliveryType deliveryType) {
         this.name = name;
         this.deliveryType = deliveryType;
     }
 
-    public Material() {
+    public MaterialAndExecution() {
     }
 
     public Integer getId() {

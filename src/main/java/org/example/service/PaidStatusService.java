@@ -5,6 +5,7 @@ import org.example.repository.PaidStatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -14,7 +15,12 @@ public class PaidStatusService {
     private PaidStatusRepository paidStatusRepository;
 
     public List<PaidStatus> getAllStatus() {
-//        statusRepository.saveAll(paidStatusList);
+        List<PaidStatus>paidStatusList = new ArrayList<>();
+        paidStatusList.add(new PaidStatus("Paid"));
+        paidStatusList.add(new PaidStatus("Advance"));
+        paidStatusList.add(new PaidStatus("Unpaid"));
+        paidStatusRepository.saveAll(paidStatusList);
+
         return paidStatusRepository.findAll();
     }
 
@@ -30,11 +36,5 @@ public class PaidStatusService {
         paidStatusRepository.deleteById(id);
     }
 
-//    static List<PaidStatus> paidStatusList = new ArrayList<>();
-//    static {
-//        paidStatusList.add(new PaidStatus("Paid"));
-//        paidStatusList.add(new PaidStatus("Unpaid"));
-//        paidStatusList.add(new PaidStatus("Advance"));
-//
-//    }
+
 }

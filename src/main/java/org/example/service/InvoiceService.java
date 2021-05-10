@@ -29,7 +29,7 @@ public class InvoiceService {
 
 
     public InvoiceDTO addInvoice(InvoiceDTO invoiceDTO) {
-        Material material = materialRepository.findByName(invoiceDTO.getMaterialAndExecution());
+        MaterialAndExecution materialAndExecution = materialRepository.findByName(invoiceDTO.getMaterialAndExecution());
         Provider provider = providersRepository.findByName(invoiceDTO.getProvider());
         PaidStatus paidStatus = paidStatusRepository.findByName(invoiceDTO.getPaidStatus());
         Client client = clientRepository.findByName(invoiceDTO.getClient());
@@ -37,7 +37,7 @@ public class InvoiceService {
 
         Invoice invoice = new Invoice(
                 invoiceDTO.getInvoiceNumber(),
-                material,
+                materialAndExecution,
                 provider,
                 invoiceDTO.getInvoiceDate(),
                 invoiceDTO.getUnitPrice(),
@@ -59,7 +59,7 @@ public class InvoiceService {
             invoiceDTOList.add(new InvoiceDTO(
                     invoice.getId(),
                     invoice.getInvoiceNumber(),
-                    invoice.getMaterial().getName(),
+                    invoice.getMaterialAndExecution().getName(),
                     invoice.getProvider().getName(),
                     invoice.getInvoiceDate(),
                     invoice.getUnitPrice(),
@@ -76,7 +76,7 @@ public class InvoiceService {
 
         InvoiceDTO invoiceDTO = new InvoiceDTO(invoice.getId(),
                 invoice.getInvoiceNumber(),
-                invoice.getMaterial().getName(),
+                invoice.getMaterialAndExecution().getName(),
                 invoice.getProvider().getName(),
                 invoice.getInvoiceDate(),
                 invoice.getUnitPrice(),
@@ -90,7 +90,7 @@ public class InvoiceService {
     }
 
     public InvoiceDTO updateInvoiceById(@RequestBody InvoiceDTO invoiceDTO) {
-        Material material = materialRepository.findByName(invoiceDTO.getMaterialAndExecution());
+        MaterialAndExecution materialAndExecution = materialRepository.findByName(invoiceDTO.getMaterialAndExecution());
         Provider provider = providersRepository.findByName(invoiceDTO.getProvider());
         PaidStatus paidStatus = paidStatusRepository.findByName(invoiceDTO.getPaidStatus());
         Client client = clientRepository.findByName(invoiceDTO.getClient());
@@ -99,7 +99,7 @@ public class InvoiceService {
 
         invoice.setId(invoiceDTO.getId());
         invoice.setInvoiceNumber(invoiceDTO.getInvoiceNumber());
-        invoice.setMaterial(material);
+        invoice.setMaterialAndExecution(materialAndExecution);
         invoice.setProvider(provider);
         invoice.setInvoiceDate(invoiceDTO.getInvoiceDate());
         invoice.setUnitPrice(invoiceDTO.getUnitPrice());

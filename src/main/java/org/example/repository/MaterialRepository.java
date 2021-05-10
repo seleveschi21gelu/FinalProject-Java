@@ -1,10 +1,10 @@
 package org.example.repository;
 
-import org.example.entity.Material;
+import org.example.entity.MaterialAndExecution;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface MaterialRepository extends JpaRepository<Material,Integer> {
-    Material findByName(String materialAndExecution);
+public interface MaterialRepository extends JpaRepository<MaterialAndExecution,Integer> {
+    MaterialAndExecution findByName(String materialAndExecution);
 
 
 

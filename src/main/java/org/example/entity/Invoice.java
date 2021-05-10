@@ -13,7 +13,7 @@ public class Invoice {
 
     @ManyToOne
     @JoinColumn(name = "material_id", referencedColumnName = "id")
-    Material material;
+    MaterialAndExecution materialAndExecution;
 
     @ManyToOne
     @JoinColumn(name = "provider_id", referencedColumnName = "id")
@@ -34,10 +34,10 @@ public class Invoice {
     @JoinColumn(name = "client_id", referencedColumnName = "id")
     Client client;
 
-    public Invoice(Integer id, String invoiceNumber, Material material, Provider provider, LocalDate invoiceDate, double unitPrice, int quantity, double tva, PaidStatus paidStatus, Client client) {
+    public Invoice(Integer id, String invoiceNumber, MaterialAndExecution materialAndExecution, Provider provider, LocalDate invoiceDate, double unitPrice, int quantity, double tva, PaidStatus paidStatus, Client client) {
         this.id = id;
         this.invoiceNumber = invoiceNumber;
-        this.material = material;
+        this.materialAndExecution = materialAndExecution;
         this.provider = provider;
         this.invoiceDate = invoiceDate;
         this.unitPrice = unitPrice;
@@ -47,9 +47,9 @@ public class Invoice {
         this.client = client;
     }
 
-    public Invoice(String invoiceNumber, Material material, Provider provider, LocalDate invoiceDate, double unitPrice, int quantity, double tva, PaidStatus paidStatus, Client client) {
+    public Invoice(String invoiceNumber, MaterialAndExecution materialAndExecution, Provider provider, LocalDate invoiceDate, double unitPrice, int quantity, double tva, PaidStatus paidStatus, Client client) {
         this.invoiceNumber = invoiceNumber;
-        this.material = material;
+        this.materialAndExecution = materialAndExecution;
         this.provider = provider;
         this.invoiceDate = invoiceDate;
         this.unitPrice = unitPrice;
@@ -140,12 +140,12 @@ public class Invoice {
     }
 
 
-    public Material getMaterial() {
-        return material;
+    public MaterialAndExecution getMaterialAndExecution() {
+        return materialAndExecution;
     }
 
-    public void setMaterial(Material material) {
-        this.material = material;
+    public void setMaterialAndExecution(MaterialAndExecution materialAndExecution) {
+        this.materialAndExecution = materialAndExecution;
     }
 
     public double getTva() {
