@@ -52,6 +52,13 @@ public class InvoiceService {
         invoiceDTO.setTotalWithTvaDinamic();
         invoiceDTO.setTotalWithoutTvaDinamic();
 
+        invoice.getTotalWithTva();
+        invoice.getTotalWithoutTva();
+
+        invoiceDTO.getTotalWithTva();
+        invoiceDTO.getTotalWithoutTva();
+
+
         invoiceRepository.save(invoice);
         return invoiceDTO;
 
@@ -72,8 +79,20 @@ public class InvoiceService {
                     invoice.getQuantity(),
                     invoice.getTva(),
                     invoice.getPaidStatus().getName(),
-                    invoice.getClient().getName()));
+                    invoice.getClient().getName(),
+                    invoice.getTotalWithoutTva(),
+                    invoice.getTotalWithTva()));
         }
+
+//        Invoice invoice = new Invoice();
+//        InvoiceDTO invoiceDTO = new InvoiceDTO();
+//        invoice.getTotalWithTva();
+//        invoice.getTotalWithoutTva();
+//
+//        invoiceDTO.getTotalWithTva();
+//        invoiceDTO.getTotalWithoutTva();
+//        invoiceRepository.save(invoice);
+
         return invoiceDTOList;
     }
 
@@ -113,6 +132,8 @@ public class InvoiceService {
         invoice.setTva(invoiceDTO.getTva());
         invoice.setPaidStatus(paidStatus);
         invoice.setClient(client);
+        invoice.setTotalWithoutTva(invoice.getTotalWithoutTva());
+        invoice.setTotalWithTva(invoice.getTotalWithTva());
 
         invoiceRepository.save(invoice);
         return invoiceDTO;

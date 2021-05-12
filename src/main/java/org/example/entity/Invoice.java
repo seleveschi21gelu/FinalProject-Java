@@ -59,6 +59,35 @@ public class Invoice {
         this.client = client;
     }
 
+    public Invoice(Integer id, String invoiceNumber, MaterialAndExecution materialAndExecution, Provider provider, LocalDate invoiceDate, double unitPrice, int quantity, double tva, PaidStatus paidStatus, Client client, double totalWithoutTva, double totalWithTva) {
+        this.id = id;
+        this.invoiceNumber = invoiceNumber;
+        this.materialAndExecution = materialAndExecution;
+        this.provider = provider;
+        this.invoiceDate = invoiceDate;
+        this.unitPrice = unitPrice;
+        this.quantity = quantity;
+        this.tva = tva;
+        this.paidStatus = paidStatus;
+        this.client = client;
+        this.totalWithoutTva = totalWithoutTva;
+        this.totalWithTva = totalWithTva;
+    }
+
+    public Invoice(String invoiceNumber, MaterialAndExecution materialAndExecution, Provider provider, LocalDate invoiceDate, double unitPrice, int quantity, double tva, PaidStatus paidStatus, Client client, double totalWithoutTva, double totalWithTva) {
+        this.invoiceNumber = invoiceNumber;
+        this.materialAndExecution = materialAndExecution;
+        this.provider = provider;
+        this.invoiceDate = invoiceDate;
+        this.unitPrice = unitPrice;
+        this.quantity = quantity;
+        this.tva = tva;
+        this.paidStatus = paidStatus;
+        this.client = client;
+        this.totalWithoutTva = totalWithoutTva;
+        this.totalWithTva = totalWithTva;
+    }
+
     double totalWithoutTva;
     double totalWithTva;
 
@@ -73,11 +102,11 @@ public class Invoice {
     }
 
     public void setTotalWithoutTva(double totalWithoutTva) {
-        this.totalWithoutTva = totalWithoutTva;
+        this.totalWithoutTva = unitPrice * quantity;
     }
 
     public void setTotalWithTva(double totalWithTva) {
-        this.totalWithTva = totalWithTva;
+        this.totalWithTva = (unitPrice * quantity) * tva / 100 + (unitPrice * quantity);
     }
 
     public void setTotalWithTvaDinamic() {

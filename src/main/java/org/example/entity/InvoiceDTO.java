@@ -22,11 +22,40 @@ public class InvoiceDTO {
     Integer quantity;
     Double tva;
     String paidStatus;
-    String flatblock;
     String  client;
 
     Double totalWithoutTva;
     Double totalWithTva;
+
+    public InvoiceDTO(Integer id, String invoiceNumber, String materialAndExecution, String provider, LocalDate invoiceDate, Double unitPrice, Integer quantity, Double tva, String paidStatus,  String client, Double totalWithoutTva, Double totalWithTva) {
+        this.id = id;
+        this.invoiceNumber = invoiceNumber;
+        this.materialAndExecution = materialAndExecution;
+        this.provider = provider;
+        this.invoiceDate = invoiceDate;
+        this.unitPrice = unitPrice;
+        this.quantity = quantity;
+        this.tva = tva;
+        this.paidStatus = paidStatus;
+
+        this.client = client;
+        this.totalWithoutTva = totalWithoutTva;
+        this.totalWithTva = totalWithTva;
+    }
+
+    public InvoiceDTO(String invoiceNumber, String materialAndExecution, String provider, LocalDate invoiceDate, Double unitPrice, Integer quantity, Double tva, String paidStatus, String client, Double totalWithoutTva, Double totalWithTva) {
+        this.invoiceNumber = invoiceNumber;
+        this.materialAndExecution = materialAndExecution;
+        this.provider = provider;
+        this.invoiceDate = invoiceDate;
+        this.unitPrice = unitPrice;
+        this.quantity = quantity;
+        this.tva = tva;
+        this.paidStatus = paidStatus;
+        this.client = client;
+        this.totalWithoutTva = totalWithoutTva;
+        this.totalWithTva = totalWithTva;
+    }
 
     public InvoiceDTO() {
     }
@@ -53,7 +82,6 @@ public class InvoiceDTO {
         this.quantity = quantity;
         this.tva = tva;
         this.paidStatus = paidStatus;
-//        this.flatblock = flatblock;
         this.client = client;
     }
 
@@ -138,13 +166,7 @@ public class InvoiceDTO {
         this.paidStatus = paidStatus;
     }
 
-    public String getFlatblock() {
-        return flatblock;
-    }
 
-    public void setFlatblock(String flatblock) {
-        this.flatblock = flatblock;
-    }
 
     public String getClient() {
         return client;
@@ -165,7 +187,7 @@ public class InvoiceDTO {
         this.totalWithoutTva = unitPrice * quantity;
     }
     public void setTotalWithoutTva(Double totalWithoutTva) {
-        this.totalWithoutTva = totalWithoutTva;
+        this.totalWithoutTva = unitPrice * quantity;
     }
 
     public Double getTotalWithTva() {
@@ -173,6 +195,6 @@ public class InvoiceDTO {
     }
 
     public void setTotalWithTva(Double totalWithTva) {
-        this.totalWithTva = totalWithTva;
+        this.totalWithTva = (unitPrice * quantity) * tva / 100 + (unitPrice * quantity);
     }
 }

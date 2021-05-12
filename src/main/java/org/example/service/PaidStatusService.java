@@ -15,11 +15,11 @@ public class PaidStatusService {
     private PaidStatusRepository paidStatusRepository;
 
     public List<PaidStatus> getAllStatus() {
-        List<PaidStatus>paidStatusList = new ArrayList<>();
-        paidStatusList.add(new PaidStatus("Paid"));
-        paidStatusList.add(new PaidStatus("Advance"));
-        paidStatusList.add(new PaidStatus("Unpaid"));
-        paidStatusRepository.saveAll(paidStatusList);
+//        List<PaidStatus>paidStatusList = new ArrayList<>();
+//        paidStatusList.add(new PaidStatus("Paid"));
+//        paidStatusList.add(new PaidStatus("Advance"));
+//        paidStatusList.add(new PaidStatus("Unpaid"));
+//        paidStatusRepository.saveAll(paidStatusList);
 
         return paidStatusRepository.findAll();
     }
