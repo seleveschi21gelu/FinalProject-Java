@@ -84,15 +84,6 @@ public class InvoiceService {
                     invoice.getTotalWithTva()));
         }
 
-//        Invoice invoice = new Invoice();
-//        InvoiceDTO invoiceDTO = new InvoiceDTO();
-//        invoice.getTotalWithTva();
-//        invoice.getTotalWithoutTva();
-//
-//        invoiceDTO.getTotalWithTva();
-//        invoiceDTO.getTotalWithoutTva();
-//        invoiceRepository.save(invoice);
-
         return invoiceDTOList;
     }
 
@@ -114,7 +105,7 @@ public class InvoiceService {
 
     }
 
-    public InvoiceDTO updateInvoiceById(@RequestBody InvoiceDTO invoiceDTO) {
+    public InvoiceDTO updateInvoiceById(InvoiceDTO invoiceDTO) {
         MaterialAndExecution materialAndExecution = materialRepository.findByName(invoiceDTO.getMaterialAndExecution());
         Provider provider = providersRepository.findByName(invoiceDTO.getProvider());
         PaidStatus paidStatus = paidStatusRepository.findByName(invoiceDTO.getPaidStatus());

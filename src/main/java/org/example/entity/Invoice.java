@@ -26,9 +26,7 @@ public class Invoice {
     @ManyToOne
     @JoinColumn(name = "paid_status_id", referencedColumnName = "id")
     PaidStatus paidStatus;
-//    @ManyToOne
-//    @JoinColumn(name = "flatblock_id", referencedColumnName = "id")
-//    FlatBlock flatBlock;
+
 
     @ManyToOne
     @JoinColumn(name = "client_id", referencedColumnName = "id")
